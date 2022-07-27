@@ -1,0 +1,361 @@
+// colors...
+$light-violet:hsl(276, 100%, 81%);
+$regular-violet:hsl(276, 55%, 52%);
+$dark-violet: hsl(271, 15%, 43%);
+$grayish-blue: hsl(206, 6%, 79%);
+$very-dark-violet:hsl(271, 36%, 24%);
+$drak-graish-violet:hsl(270, 7%, 64%);
+$White: hsl(0, 0%, 100%);
+$app-bg-color: hsl(270, 20%, 96%);
+$submit-btn-bg: hsl(271, 36%, 24%);
+$radio-btn-outline: hsl(289, 100%, 72%);
+// gradients...
+$gradient1:linear-gradient(to right, hsl(264, 100%, 61%), hsl(293, 100%, 63%));
+$gradient2:linear-gradient(to bottom, hsl(293, 100%, 63%), hsl(264, 100%, 61%));
+$gradient3:linear-gradient(to right, hsl(293, 100%, 63%), hsl(264, 100%, 61%));
+
+// reset style rules...
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+@mixin breakpoint-down {
+    @media only screen and (max-width:64rem){
+        @content;
+    }
+}
+@mixin breakpoint-tablet {
+    @media only screen and (max-width:881px){
+        @content;
+    }
+}
+@mixin breakpoint-mobile {
+    @media only screen and (max-width:583px){
+        @content;
+    }
+}
+body{
+ font-family: 'Rubik', sans-serif;
+ background-color:rgba($color: $app-bg-color, $alpha: 0.3);
+ width: 100%;
+ height: 100vh;
+ overflow-x: hidden;
+ position: relative;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+body::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -70px;
+    width: 30%;
+    height: 85%;
+    background: $gradient2;
+    border-radius: 0 0 23rem 23rem;
+    z-index: -1;
+    @include breakpoint-tablet(){
+        width: 45%;
+        height: 70%;
+    }
+    @include breakpoint-mobile(){
+        width: 54%;
+        height: 64%;
+    }
+}
+body::after{
+    content: '';
+    position: absolute;
+    bottom:  0;
+    right: -70px;
+    width: 30%;
+    height: 85%;
+    background:rgba($color: $drak-graish-violet, $alpha: 0.05);
+    border-radius: 23rem 23rem 0 0;
+    z-index: -1;
+    @include breakpoint-tablet(){
+        bottom: -82px;
+        width: 48%;
+        height: 65%;    
+    }
+    @include breakpoint-mobile(){
+        bottom: -151px;
+        width: 66%;
+       height: 57%;
+    }
+}
+.container{
+   display: flex;
+   align-items: center;
+//    justify-content: space-between;
+   flex-wrap: wrap;
+    // border: 2px solid black;
+    gap: 15rem;
+    @include breakpoint-down(){
+        gap: 10rem;
+    }
+    @include breakpoint-tablet(){
+        gap: 2rem;
+        justify-content: center;
+    }
+}
+.mobile{
+    width: 28rem;
+    height: 57.5rem;
+    padding: .8rem;
+    background-color: $White;
+    // border: 2px solid red;
+    border-radius: 2.8rem;
+    box-shadow: 0px 15px 40px rgba($color: $very-dark-violet, $alpha: 0.25);
+    @include breakpoint-tablet(){
+        margin-top:15rem;
+    }
+
+    &__screen{
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        // border: 2px solid green;
+        overflow: hidden;
+    }
+    &__top{
+        position: relative;
+        width: 100%;
+        height: 9rem;
+        padding: 1.4rem .5rem;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        border-radius: 0 0 .4rem .4rem;
+        background-image: $gradient1;
+        box-shadow: 0px 3px 5px rgba($color: #000000, $alpha: 0.1);
+
+
+        &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        background: $White;
+        width: 55%;
+        height: 2.2rem;
+        transform:translateX(-50%);
+        border-radius: 0 0 1.6rem 1.6rem;
+
+        }
+    }
+
+    &__top-profile{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .profile-arrow {
+            position: relative;
+            >span:first-child,>span:last-child{
+                display: inline-block;
+                width: 1rem;
+                height: .2rem;
+                background-color: $White;
+            }
+            >span:first-child{
+                transform: rotate(130deg);
+                transform-origin: 12px 0px;
+            }
+            >span:last-child{
+                transform: rotate(-130deg);
+                transform-origin: 4px 1px;
+                
+            }
+        }
+        .profile-pic{
+            width: 2.8rem;
+            height: 2.8rem;
+            background: url(/images/avatar.jpg) no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-radius: 50%;
+            border: 2px solid $White;
+
+        }
+        .profile-name{
+            h4{
+                font-size: 1.2rem;
+                font-weight: 400;
+                line-height: 1.6;
+                color: $White;
+            }
+            h6{
+                font-size: .9rem;
+                font-weight: 400;
+                color:$light-violet ;
+            }
+        }
+    }
+    &__top-dots{
+        padding-bottom: 5px;
+        padding-right: 15px;
+        >span{
+            display: block;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background-color: $White;
+            &:not(:last-child){
+                margin-bottom: .3rem;
+            }
+        }
+    }
+    &__main{
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        background: $app-bg-color;
+        .reply{
+            max-width: 15rem;
+            padding: .8rem;
+            background-color: rgba($color: $light-violet, $alpha: 0.2);
+            border-radius: 1.3rem 1.3rem 1.3rem .3rem;
+            color: $regular-violet;
+            margin-bottom: .8rem;
+        }
+        .msg-pics{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: .6rem;
+
+            .dogs-pic{
+                margin: .8rem 0;
+                border-radius: 1.4rem;
+                overflow: hidden;
+                img{
+                    max-width: 100%;
+                    width: 4.5rem;
+                }
+            }
+        }
+        .msg{
+            padding: .8rem;
+            background: $White;
+            color: $very-dark-violet;
+            border-radius: 1.3rem 1.3rem .3rem 1.3rem;  
+            max-width:fit-content;
+            margin-left: auto;
+            margin-bottom: .8rem;
+            box-shadow: 0 5px 5px rgba($color: #000000, $alpha: .03);
+            p{
+                max-width: 15rem;
+            }
+        }
+        .gradient-reply-1,
+        .gradient-reply-2{
+            padding: 1.2rem;
+            background-image: $gradient3;
+            color: $White;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .gradient-reply-left{
+                display: flex;
+                align-items: center;
+                gap: .8rem;
+            }
+            .reply-circle{
+                width: 1rem;
+                height: 1rem;
+                border: 1px solid $radio-btn-outline;
+                border-radius: 50%;
+            }
+                  p{
+                      font-size: .9rem;
+                  }                
+            .gradient-reply-right{
+                strong{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        .typing-bar{
+            width: 100%;
+            padding: .6rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: $White;
+            border-radius: 1.6rem;
+            margin-block:1rem;
+            input{
+                background: transparent;
+                border: none;
+                outline: none;
+                padding: 0 1rem;
+                font-size: 1.1rem;
+                &::placeholder{
+                    color:    $drak-graish-violet;
+               }
+            }
+            button{
+                width: 3rem;
+                height: 3rem;
+                background:$submit-btn-bg ;
+                // position: relative;
+                display: flex;
+                align-self: center;
+                justify-content: center;
+                border: none;
+                border-radius: 50%;
+                >span{
+                    margin-block: auto;
+                    // position: absolute;
+                    // top: 50%;
+                    // left: 50%;
+                    width: .9rem;
+                    height: .2rem;
+                    display: inline-block;
+                    background-color: $White;
+                    transform: translate(-50%,-50%);
+                }
+                >span:first-child{
+                    transform: rotate(230deg);
+                    transform-origin: 7px -1px;
+                }
+                >span:last-child{
+                    transform: rotate(-230deg);
+                    transform-origin: 2px 2px;
+
+                }
+            }
+        }
+    }
+}
+// .....text section style rules....
+.text{
+    @include breakpoint-tablet(){
+      text-align: center;
+      padding-block: 1rem;
+      padding-inline: 2rem;
+    }
+    &__heading{
+        font-size: clamp(2rem,7vw,3.9rem);
+        font-weight: 500;
+        line-height: 2;
+        color: $very-dark-violet;
+    }
+    &__para{
+        max-width: 48rem;
+        font-size: 1.7rem;
+        line-height: 1.5;
+        color: $drak-graish-violet;
+    }
+}
